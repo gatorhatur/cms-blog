@@ -1,9 +1,10 @@
 async function signupFormHandler(event) {
     event.preventDefault();
+    console.log("clicked signup button")
 
-    const username = document.querySelector('#username-signup').value.trim();
-    const email = document.querySelector('#email-signup').value.trim();
-    const password = document.querySelector('#password-signup').value.trim();
+    const username = document.querySelector('#email-login').value.trim();
+    const email = document.querySelector('#email-login').value.trim();
+    const password = document.querySelector('#password-login').value.trim();
 
     if (username && email && password) {
         const response = await fetch('/api/users', {
@@ -28,7 +29,7 @@ async function signupFormHandler(event) {
 
 async function loginFormHandler(event) {
     event.preventDefault();
-
+    console.log("clicked login button")
     const password = document.querySelector('#password-login').value.trim();
     const email = document.querySelector('#email-login').value.trim();
 
@@ -42,10 +43,10 @@ async function loginFormHandler(event) {
             headers: {'Content-Type': 'application/json'}
         })
         
-        response.ok ? document.location.replace('/dashboard') : alert(response.statusText);
+        response.ok ? document.location.replace('/') : alert(response.statusText);
 
     }
 }
 
-document.querySelector('.signup-form').addEventListener('submit', signupFormHandler);
-document.querySelector('.login-form').addEventListener('submit', loginFormHandler);
+document.querySelector('#signup-btn').addEventListener('click', signupFormHandler);
+document.querySelector('#login-btn').addEventListener('click', loginFormHandler);
