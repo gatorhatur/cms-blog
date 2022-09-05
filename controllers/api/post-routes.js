@@ -40,7 +40,7 @@ router.get('/:id', (req, res) => {
     Post.findOne({
         //query config
         where: {id: req.params.id},
-        attributes: ['id', 'post_text', 'title', 'created_at'],
+        attributes: ['id', 'post_text', 'title', 'created_at','user_id'],
         include: [{
             model: User,
             attributes: ['username']
