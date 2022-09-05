@@ -1,18 +1,8 @@
-<section>
-  <h2>Create New Post</h2>
 
-  <form class="new-post-form">
-    <div class="mb-3">
-      <label class="form-label" for="post-title">Title</label>
-      <input class="form-control" type="text" id="post-title" name="post-title" />
-    </div>
-    <div class="mb-3">
-      <label class="form-label" for="post-text">Content</label><br>
-      <textarea class="form-control" name="post-text" id="post-text" rows="4" cols="100"></textarea>
-    </div>
-    <button type="submit" class="btn btn-primary">Create</button>
-  </form>
-</section>
+    <button type="submit" data-bs-toggle="modal" data-bs-target="#post-modal" class="btn btn-primary">Create New Post</button>
+
+    {{>post-modal}}
+
 
 {{#if posts.length}}
 <section class="mt-3">
