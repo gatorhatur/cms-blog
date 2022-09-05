@@ -15,7 +15,6 @@ router.get('/', withAuth, (req, res) => {
             'title',
             'created_at',
         ],
-        order: [['created_at','desc']],
         include: [
             {
                 model: Comment,
@@ -29,7 +28,8 @@ router.get('/', withAuth, (req, res) => {
                 model: User,
                 attributes: ['username']
             }
-        ]
+        ],
+        order: [['created_at','desc']]
     })
         .then(dbPostData => {
             const posts = dbPostData.map(post => post.get({ plain: true }));
