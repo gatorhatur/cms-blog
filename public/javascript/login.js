@@ -29,13 +29,14 @@ async function signupFormHandler(event) {
         }
         else
         {
-            modalAlerts(alert, 'error', response.statusText);
+            modalAlerts(alert, 'error', 'Something went wrong');
             console.log(response.status)
         }
 
     }
     else {
-            modalAlerts(alert,'warning','All fields must be completed to create an account')
+        modalAlerts(alert, 'warning', 'All fields must be completed to create an account')
+        resetModalHandler();
     }
 }
 
@@ -69,8 +70,18 @@ async function loginFormHandler(event) {
     }
     else {
         modalAlerts(alert, 'error', 'Your credentials are invalid');
+        resetModalHandler();
     }
 }
 
+function resetModalHandler() {
+    setTimeout(() => {
+        const alert = document.querySelector('#login-modal-alert');
+        modalAlerts(alert, 'info', 'Login with your credentials or create an account by entering your email address and a password. Then click create account.');
+    },2000)
+}
+
+
 document.querySelector('#signup-btn').addEventListener('click', signupFormHandler);
 document.querySelector('#login-btn').addEventListener('click', loginFormHandler);
+

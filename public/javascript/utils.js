@@ -9,6 +9,8 @@ export function modalAlerts(element,alertLevel, message){
         case 'error':
             element.setAttribute('class', 'alert alert-danger')
             break;
+        case 'info':
+            element.setAttribute('class', 'alert alert-info')
     }
 
     element.textContent = message;

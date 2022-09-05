@@ -2,14 +2,15 @@
   <div class="card-header">
     {{#if is-logged-in}}
       {{#if dashboard}}
-      <a href="/dashboard/edit/{{id}}">
+      <a href="/dashboard/edit/{{id}}"
       {{else}}
-      <a href="/post/{{id}}">
+      <a href="/post/{{id}}"
       {{/if}}
-      {{title}}</a>
+      
     {{else}}
-    <a href="/post/{{id}}" data-bs-toggle="modal" data-bs-target="#login-modal">{{title}}</a>
+    <a href="/post/{{id}}" data-bs-toggle="modal" data-bs-target="#login-modal"
     {{/if}}
+    class="btn-no-style">{{title}}</a>
   </div>
   <div class="card-body">
     <p class="card-text">{{post_text}}</p>
