@@ -1,3 +1,5 @@
+import { modalAlerts } from './utils.js'
+
 async function newFormHandler(event) {
     event.preventDefault();
 
@@ -5,6 +7,8 @@ async function newFormHandler(event) {
 
     const title = document.querySelector('input[name="post-title"').value;
     const post_text = document.querySelector('#post-text').value;
+
+    const alert = document.querySelector('#post-modal-alert')
 
     const response = await fetch('/api/posts', {
         method: 'POST',
@@ -18,10 +22,11 @@ async function newFormHandler(event) {
     })
 
     if (response.ok) {
+        modalAlerts(alert,'success','Post created successfully!')
         document.location.replace('/dashboard');
     }
     else {
-        alert(response.statusText);
+        modalAlerts(alert, 'error', 'All fields must be completed to submit');
     }
 }
 

@@ -1,3 +1,5 @@
+import { modalAlerts } from './utils.js'
+
 async function signupFormHandler(event) {
     event.preventDefault();
     console.log("clicked signup button")
@@ -5,6 +7,8 @@ async function signupFormHandler(event) {
     const username = document.querySelector('#email-login').value.trim();
     const email = document.querySelector('#email-login').value.trim();
     const password = document.querySelector('#password-login').value.trim();
+
+    const alert = document.querySelector('#login-modal-alert')
 
     if (username && email && password) {
         const response = await fetch('/api/users', {
@@ -18,20 +22,30 @@ async function signupFormHandler(event) {
         })
         
         if (response.ok) {
+            modalAlerts(alert,'success','Sign-Up Success!')
+
             document.location.replace('/dashboard')
-            conseold.log('success');
+            console.log('success');
         }
         else
-        { alert(response.statusText); }
+        {
+            modalAlerts(alert, 'error', response.statusText);
+            console.log(response.status)
+        }
 
+    }
+    else {
+            modalAlerts(alert,'warning','All fields must be completed to create an account')
     }
 }
 
 async function loginFormHandler(event) {
     event.preventDefault();
-    console.log("clicked login button")
+
     const password = document.querySelector('#password-login').value.trim();
     const email = document.querySelector('#email-login').value.trim();
+
+    const alert = document.querySelector('#login-modal-alert')
 
     if (email && password) {
         const response = await fetch('/api/users/login', {
@@ -40,11 +54,21 @@ async function loginFormHandler(event) {
                 email,
                 password
             }),
-            headers: {'Content-Type': 'application/json'}
+            headers: { 'Content-Type': 'application/json' }
         })
         
-        response.ok ? document.location.replace('/') : alert(response.statusText);
+        if (response.ok) {
+            modalAlerts(alert,'success','Login Success!')
+            document.location.replace('/')
+        }
+        else {
+            modalAlerts(alert, 'error', 'Your credentials are invalid');
+        }
+        
 
+    }
+    else {
+        modalAlerts(alert, 'error', 'Your credentials are invalid');
     }
 }
 
