@@ -1,7 +1,12 @@
 <div class="card">
   <div class="card-header">
     {{#if is-logged-in}}
-    <a href="/post/{{id}}">{{title}}</a>
+      {{#if dashboard}}
+      <a href="/dashboard/edit/{{id}}">
+      {{else}}
+      <a href="/post/{{id}}">
+      {{/if}}
+      {{title}}</a>
     {{else}}
     <a href="/post/{{id}}" data-bs-toggle="modal" data-bs-target="#login-modal">{{title}}</a>
     {{/if}}
